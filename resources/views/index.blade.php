@@ -1,0 +1,34 @@
+<x-Doctype>
+    <x-header></x-header>
+
+   
+
+    <div class="container mt-5">
+         <h1>Kommende arrengementer i Warhammer</h1>
+        @forelse ($events as $event)
+            <div class="card mb-4">
+                <div class="row g-0">
+                    @if($event->image_path)
+                    <div class="col-md-3">
+                        <img src="{{ asset($event->image_path) }}" class="img-fluid rounded-start event-img" alt="{{ $event->title }}">
+                    </div>
+                    @endif
+                    <div class="{{ $event->image_path ? 'col-md-9' : 'col-md-12' }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $event->title }}</h5>
+                            {{-- <p class="card-text">{{ $event->content }}</p> --}}
+                            <p class="card-text"><strong>Category:</strong> {{ $event->category }}</p>
+                            <p class="card-text"><strong>Date:</strong> {{ $event->date }}</p>
+                            <p class="card-text"><strong>Time:</strong> {{ $event->start_time }} - {{ $event->end_time }}</p>
+                            <a href="{{ url('/event/' . $event->id) }}" class="btn btn-primary">Læs mere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <p>No events found</p>
+        @endforelse
+    </div>
+
+    <x-footer></x-footer>
+</x-Doctype>

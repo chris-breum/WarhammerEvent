@@ -1,0 +1,77 @@
+<x-Doctype>
+    <x-header></x-header>
+
+    <div class="container mt-5 mb-5">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>✨ Opret Ny Event</h1>
+                <p class="form-subtitle">Udfyld formularen nedenfor for at oprette et nyt arrangement</p>
+            </div>
+
+            @if ($errors->any())
+                <div class="alert alert-error">
+                    <strong>⚠️ Der er nogle fejl:</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ url('/events') }}" method="POST" enctype="multipart/form-data" class="event-form">
+                @csrf
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="title">📝 Titel</label>
+                        <input type="text" id="title" name="title" value="{{ old('title') }}" placeholder="Indtast event titel" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">🏷️ Kategori</label>
+                        <input type="text" id="category" name="category" value="{{ old('category') }}" placeholder="F.eks. Sport, Kultur, Møde" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">📄 Beskrivelse</label>
+                    <textarea id="content" name="content" rows="6" placeholder="Beskriv dit arrangement i detaljer..." required>{{ old('content') }}</textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">📅 Dato</label>
+                        <input type="date" id="date" name="date" value="{{ old('date') }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_time">🕐 Starttid</label>
+                        <input type="time" id="start_time" name="start_time" value="{{ old('start_time') }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_time">🕐 Sluttid</label>
+                        <input type="time" id="end_time" name="end_time" value="{{ old('end_time') }}" required>
+                    </div>
+                </div>
+
+                <div class="form-group file-upload-group">
+                    <label for="image" class="d-block mb-2">🖼️ Billede (valgfrit)</label>
+                    <input type="file" id="image" name="image" accept="image/*" class="form-control">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <span>✓</span> Opret Event
+                    </button>
+                    <a href="{{ url('/') }}" class="btn btn-secondary">
+                        <span>✕</span> Annuller
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <x-footer></x-footer>
+</x-Doctype>
