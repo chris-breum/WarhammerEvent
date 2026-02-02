@@ -16,6 +16,23 @@
                         <p class="card-text"><strong>Category:</strong> {{ $event->category }}</p>
                         <p class="card-text"><strong>Date:</strong> {{ $event->date }}</p>
                         <p class="card-text"><strong>Time:</strong> {{ $event->start_time }} - {{ $event->end_time }}</p>
+                        
+                        @auth
+                            @if(auth()->user()->isAdmin())
+                                <div class="mt-4" style="display: flex; gap: 10px;">
+                                    <a href="{{ url('/events/' . $event->id . '/edit') }}" class="btn btn-primary">
+                                        <span>✏️</span> Rediger Event
+                                    </a>
+                                    <form action="{{ url('/events/' . $event->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Er du sikker på at du vil slette denne event?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-secondary" style="background: #dc3545; border-color: #dc3545;">
+                                            <span>🗑️</span> Slet Event
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>

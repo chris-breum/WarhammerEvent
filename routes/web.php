@@ -23,7 +23,14 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'show']);
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/create', [EventController::class, 'create'])->middleware('auth');
-Route::post('/events', [EventController::class, 'store'])->middleware('auth');
+// Admin only routes
+Route::middleware('admin')->group(function () {
+    Route::get('/create', [EventController::class, 'create']);
+    Route::post('/events', [EventController::class, 'store']);
+    Route::get('/events/{event}/edit', [EventController::class, 'edit']);
+    Route::put('/events/{event}', [EventController::class, 'update']);
+    Route::delete('/events/{event}', [EventController::class, 'destroy']);
+});
+
 Route::get('/event/{event}', [EventController::class, 'show']);
 

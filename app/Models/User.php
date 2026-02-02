@@ -13,6 +13,7 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
+        'role',
     ];
 
     protected $hidden = [
@@ -24,5 +25,21 @@ class User extends Authenticatable
         return [
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Check if user is an admin
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Check if user is a regular user
+     */
+    public function isUser(): bool
+    {
+        return $this->role === 'user';
     }
 }

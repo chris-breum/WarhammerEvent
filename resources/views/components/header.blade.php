@@ -9,7 +9,9 @@
 
             <nav style="display: flex; gap: 20px; align-items: center;">
                 @auth
-                    <a href="{{ url('/create') }}"><h3>Opret Event</h3></a>
+                    @if(auth()->user()->isAdmin())
+                        <a href="{{ url('/create') }}"><h3>Opret Event</h3></a>
+                    @endif
                     <form action="{{ url('/logout') }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit" style="background: none; border: none; cursor: pointer;">
