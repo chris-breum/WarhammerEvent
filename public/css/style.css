@@ -45,25 +45,34 @@ a {
 
 
 footer {
-    background-color: #bd3317;
+    background-color: #8B0000;
     color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 40px 20px;
     bottom: 0;
     position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
     margin-bottom: -5px;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
 }
 
 .footer-content {
     flex: 1;
-    min-width: 200px;
+    min-width: 250px;
+    text-align: center;
+}
+
+.footer-content h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 8px;
 }
 
 .footer-content p {
@@ -71,8 +80,114 @@ footer {
     font-size: 14px;
 }
 
+.footer-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-center .logo {
+    margin-bottom: 20px;
+}
+
+.footer-content a:hover svg {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+    /* Header */
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .logo {
+        float: none;
+        width: 60px;
+    }
+
+    .header-container nav {
+        flex-direction: row !important;
+        gap: 15px !important;
+        font-size: 14px;
+    }
+
+    .header-container nav h3 {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .header-img {
+        height: 25vh;
+    }
+
+    /* Main content */
+    main, .container {
+        padding: 20px 15px;
+    }
+
+    /* Event cards */
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .event-img {
+        width: 100%;
+        height: 200px;
+    }
+
+    /* Forms */
+    .form-container {
+        margin: 20px 10px;
+        border-radius: 8px;
+    }
+
+    .form-header {
+        padding: 30px 20px;
+    }
+
+    .form-header h1 {
+        font-size: 24px;
+    }
+
+    .form-subtitle {
+        font-size: 14px;
+    }
+
+    .event-form {
+        padding: 25px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .file-upload-wrapper {
+        padding: 25px 15px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .btn {
+        width: 100%;
+        min-width: auto;
+        padding: 14px 20px;
+    }
+
+    /* Footer */
     footer {
         flex-direction: column;
         padding: 30px 20px;
@@ -82,11 +197,68 @@ footer {
     .footer-content {
         width: 100%;
         min-width: unset;
+        text-align: center;
+    }
+    
+    .footer-content h4 {
+        text-align: center;
+        font-size: 16px;
     }
     
     footer .logo {
         width: 60px;
         order: -1;
+    }
+
+    /* Tables */
+    .table {
+        font-size: 12px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px 4px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Admin actions on mobile */
+    .admin-actions {
+        flex-direction: column;
+    }
+
+    .admin-actions .btn,
+    .admin-actions form {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .admin-actions form button {
+        width: 100%;
+    }
+
+    /* Smaller badges */
+    .badge {
+        font-size: 11px;
+    }
+
+    /* Sort controls on mobile */
+    .sort-controls {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .sort-controls label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .sort-controls select,
+    .sort-controls button {
+        flex: 1;
     }
 }
 
@@ -306,4 +478,67 @@ footer {
     width: 400px;
     height: 250px;
     object-fit: cover;
+}
+
+/* Admin action buttons */
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin-actions .btn {
+    flex: 1;
+    min-width: 150px;
+}
+
+.admin-actions form {
+    flex: 1;
+    min-width: 150px;
+}
+
+.admin-actions form button {
+    width: 100%;
+}
+
+/* Mobile user cards */
+.user-card-mobile {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.user-card-mobile:last-child {
+    border-bottom: none;
+}
+
+.user-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.user-card-header strong {
+    font-size: 14px;
+    word-break: break-word;
+    margin-right: 10px;
+}
+
+.user-card-body p {
+    font-size: 13px;
+    margin: 0;
+}
+
+/* Sort controls */
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sort-controls label {
+    white-space: nowrap;
 }

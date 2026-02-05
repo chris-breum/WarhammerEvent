@@ -11,6 +11,7 @@
                 @auth
                     @if(auth()->user()->isAdmin())
                         <a href="{{ url('/create') }}"><h3>Opret Event</h3></a>
+                        <a href="{{ url('/users') }}"><h3>Brugere</h3></a>
                     @endif
                     <form action="{{ url('/logout') }}" method="POST" style="display: inline;">
                         @csrf
